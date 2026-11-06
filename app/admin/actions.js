@@ -23,7 +23,8 @@ export async function authenticateAdmin(previousState, formData) {
     return { error: "The admin access key is incorrect." };
   }
 
-  cookies().set(ADMIN_COOKIE, createSessionToken(), {
+  const cookieStore = await cookies();
+  cookieStore.set(ADMIN_COOKIE, createSessionToken(), {
     httpOnly: true,
     sameSite: "lax",
     secure: process.env.NODE_ENV === "production",
@@ -35,6 +36,7 @@ export async function authenticateAdmin(previousState, formData) {
 }
 
 export async function logoutAdmin() {
-  cookies().delete(ADMIN_COOKIE);
+  const cookieStore = await cookies();
+  cookieStore.delete(ADMIN_COOKIE);
   redirect("/");
 }

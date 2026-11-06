@@ -1,8 +1,8 @@
 import AdminAccessGate from "../../components/admin/AdminAccessGate";
 import { isAdminSession } from "../../lib/admin-auth";
 
-export default function AdminLayout({ children }) {
-  if (!isAdminSession()) {
+export default async function AdminLayout({ children }) {
+  if (!(await isAdminSession())) {
     return <AdminAccessGate />;
   }
 

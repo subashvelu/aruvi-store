@@ -9,6 +9,7 @@ export async function generateStaticParams() {
   ];
 }
 
-export default function ProductDetailPage({ params }) {
-  return <ProductDetailClient productId={params?.productId || '1'} />;
+export default async function ProductDetailPage({ params }) {
+  const { productId } = await params;
+  return <ProductDetailClient productId={productId || '1'} />;
 }

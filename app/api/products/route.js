@@ -52,7 +52,7 @@ export async function GET() {
 }
 
 export async function POST(request) {
-  const denied = requireAdmin();
+  const denied = await requireAdmin();
   if (denied) return denied;
 
   try {

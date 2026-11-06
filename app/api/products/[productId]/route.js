@@ -8,8 +8,9 @@ export async function generateStaticParams() {
 }
 
 export async function GET(request, { params }) {
+  const { productId } = await params;
   return Response.json({
-    productId: params?.productId || '1',
+    productId: productId || '1',
     status: 'success'
   });
 }

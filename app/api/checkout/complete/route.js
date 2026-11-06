@@ -125,16 +125,23 @@ export async function POST(request) {
       return NextResponse.json({ error: "Unable to save the order." }, { status: 500 });
     }
 
+    // The payment succeeded and the order is saved. A failed email must not look like a failed checkout.
+    let emailSent = false;
     if (isDigital) {
-      await sendDigitalProductEmail({
-        to: normalizedEmail,
-        customerName: customer.fullName,
-        productName: dbProduct.name,
-        deliveryLink: dbProduct.digital_access_link,
-      });
+      try {
+        await sendDigitalProductEmail({
+          to: normalizedEmail,
+          customerName: customer.fullName,
+          productName: dbProduct.name,
+          deliveryLink: dbProduct.digital_access_link,
+        });
+        emailSent = true;
+      } catch (emailError) {
+        console.error("Delivery email failed for order", orderPayload.order_code, emailError?.message);
+      }
     }
 
-    return NextResponse.json({ ok: true, orderCode: orderPayload.order_code });
+    return NextResponse.json({ ok: true, orderCode: orderPayload.order_code, emailSent });
   } catch (error) {
     return NextResponse.json({ error: "Unable to complete checkout." }, { status: 500 });
   }

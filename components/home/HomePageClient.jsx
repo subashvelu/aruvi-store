@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -97,7 +97,7 @@ export default function HomePageClient() {
               transition={{ duration: 0.8, delay: 0.15 }}
               className="relative z-10 rounded-[2.5rem] border border-white/10 bg-white/[0.04] p-5 shadow-[0_30px_120px_rgba(0,0,0,0.28)] backdrop-blur"
             >
-              <div className="rounded-[2rem] bg-[linear-gradient(135deg,#2dd4bf_0%,#0d9488_48%,#0369a1_100%)] p-8">
+              <div className="rounded-[2rem] bg-[linear-gradient(135deg,#d946ef_0%,#7c3aed_48%,#1d4ed8_100%)] p-8">
                 <p className="text-xs uppercase tracking-[0.35em] text-white/70">Study tip of the week</p>
                 <h2 className="mt-4 max-w-sm text-4xl font-semibold leading-tight text-white">Don&apos;t memorise commands. Build the pipeline.</h2>
                 <p className="mt-5 max-w-md text-sm leading-7 text-white/72">
